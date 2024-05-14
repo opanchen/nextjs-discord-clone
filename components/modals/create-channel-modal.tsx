@@ -1,4 +1,5 @@
 "use client";
+import { useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 
 import qs from "query-string";
@@ -48,25 +49,30 @@ const formSchema = z.object({
 });
 
 export const CreateChannelModal = () => {
-  const { isOpen, onClose, type } = useModal();
+  const { isOpen, onClose, type, data } = useModal();
   const router = useRouter();
   const params = useParams();
 
   const isModalOpen = isOpen && type === "createChannel";
+  const { channelType } = data;
 
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
-      type: ChannelType.TEXT,
+      type: channelType || ChannelType.TEXT,
     },
   });
+
+  useEffect(() => {
+    if (channelType) {
+      form.setValue("type", channelType);
+    } else form.setValue("type", ChannelType.TEXT);
+  }, [channelType, form]);
 
   const isLoading = form.formState.isSubmitting;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log("Form values provided: ", values);
-
     try {
       const url = qs.stringifyUrl({
         url: "/api/channels",
@@ -81,7 +87,7 @@ export const CreateChannelModal = () => {
       router.refresh();
       onClose();
     } catch (error) {
-      console.log("CREATE-CHANNEL-MODAL | FORM SUBMITTING ERROR: ", error);
+      console.log(error);
     }
   };
 
