@@ -16,11 +16,11 @@ export const MobileToggle = ({ serverId }: { serverId: string }) => {
 
       <SheetContent side="left" className="p-0 flex gap-0">
         <div className="w-[72px]">
-          //! server component inside - this approach can be wrong
+          {/* //! server component inside - this approach can be wrong */}
           {/* @ts-expect-error Server Component */}
           <NavigationSidebar />
         </div>
-        //! server component inside - this approach can be wrong
+        {/* //! server component inside - this approach can be wrong */}
         {/* @ts-expect-error Server Component */}
         <ServerSidebar serverId={serverId} />
       </SheetContent>
