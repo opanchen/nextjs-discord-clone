@@ -1,11 +1,10 @@
 "use client";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-
 import axios from "axios";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 import { useModal } from "@/hooks/use-modal-store";
 
@@ -63,8 +62,6 @@ export const EditServerModal = () => {
   const isLoading = form.formState.isSubmitting;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log("Form values provided: ", values);
-
     try {
       await axios.patch(`/api/servers/${server?.id}`, values);
 
@@ -72,7 +69,7 @@ export const EditServerModal = () => {
       router.refresh();
       onClose();
     } catch (error) {
-      console.log("EDIT-SERVER-MODAL | FORM SUBMITTING ERROR: ", error);
+      console.log(error);
     }
   };
 

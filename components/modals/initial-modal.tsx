@@ -1,11 +1,10 @@
 "use client";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-
+import axios from "axios";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import axios from "axios";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 import {
   Dialog,
@@ -56,8 +55,6 @@ export const InitialModal = () => {
   const isLoading = form.formState.isSubmitting;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log("Form values provided: ", values);
-
     try {
       await axios.post("/api/servers", values);
 
@@ -65,7 +62,7 @@ export const InitialModal = () => {
       router.refresh();
       window.location.reload();
     } catch (error) {
-      console.log("INITIAL-MODAL | FORM SUBMITTING ERROR: ", error);
+      console.log(error);
     }
   };
 

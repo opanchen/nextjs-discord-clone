@@ -2,7 +2,6 @@
 
 import { useParams, useRouter } from "next/navigation";
 import { Member, MemberRole, Profile, Server } from "@prisma/client";
-
 import { ShieldAlert, ShieldCheck } from "lucide-react";
 
 import { UserAvatar } from "@/components/user-avatar";

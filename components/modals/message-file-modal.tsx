@@ -1,12 +1,11 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-
 import axios from "axios";
 import qs from "query-string";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 
 import {
   Dialog,
@@ -50,8 +49,6 @@ export const MessageFileModal = () => {
   const isLoading = form.formState.isSubmitting;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log("Form values provided: ", values);
-
     try {
       const url = qs.stringifyUrl({
         url: apiUrl || "",
@@ -67,7 +64,7 @@ export const MessageFileModal = () => {
       router.refresh();
       handleClose();
     } catch (error) {
-      console.log("INITIAL-MODAL | FORM SUBMITTING ERROR: ", error);
+      console.log(error);
     }
   };
 

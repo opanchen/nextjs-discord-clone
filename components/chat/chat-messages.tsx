@@ -3,7 +3,6 @@
 import { Fragment, useRef, ElementRef } from "react";
 import { format } from "date-fns";
 import { Member, Message, Profile } from "@prisma/client";
-
 import { Loader2, ServerCrash } from "lucide-react";
 
 import { ChatWelcome } from "@/components/chat/chat-welcome";
