@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   title: "Discord Clone",
   description:
     "Team Chat Application built with Next.js, TailwindCSS, ShadcnUI, Socket.io, MySQL and Prisma.",
-  metadataBase: new URL(baseUrl),
+  // metadataBase: new URL(baseUrl), //! --- triggers an error
   alternates: {
     canonical: baseUrl,
   },
